@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio | Manuel Julián Pianeta</title>
+
+  <!-- Bootstrap 5 -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Iconos (Font Awesome) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <!-- Estilos personalizados -->
+  <style>
+    :root {
+      --primary-color: #0d6efd;
+      --bg-dark: #050816;
+      --bg-section: #0b1020;
+      --text-light: #f8f9fa;
+      --accent: #ffc107;
+    }
+
+    body {
+      scroll-behavior: smooth;
+      background: radial-gradient(circle at top left, #1f2933, #020617);
+      color: var(--text-light);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: rgba(3, 7, 18, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar-brand span {
+      font-weight: 700;
+    }
+
+    /* SECCIÓN HERO */
+    #inicio {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 800;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: #cbd5f5;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+
+    .hero-cta {
+      gap: 1rem;
+    }
+
+    .hero-img-wrapper {
+      position: relative;
+    }
+
+    .hero-card {
+      border-radius: 1.5rem;
+      background: radial-gradient(circle at top, #1e293b, #020617);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.8);
+    }
+
+    .floating-badge {
+      position: absolute;
+      top: 10%;
+      right: 5%;
+      background: rgba(15, 23, 42, 0.95);
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* SECCIONES GENERALES */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      color: #9ca3af;
+      margin-bottom: 2rem;
+    }
+
+    .bg-section {
+      background: var(--bg-section);
+    }
+
+    /* HABILIDADES */
+    .skill-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.85rem;
+      margin: 4px;
+    }
+
+    /* TARJETAS DE PROYECTO */
+    .project-card {
+      border-radius: 1.2rem;
+      overflow: hidden;
+      background: #020617;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
+      border-color: var(--primary-color);
+    }
+
+    .project-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-body {
+      padding: 16px 18px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-tags span {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      margin-right: 6px;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 24px;
+      border-left: 2px solid rgba(148, 163, 184, 0.6);
+    }
+
+    .timeline-item {
+      margin-bottom: 20px;
+    }
+
+    .timeline-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--accent);
+      position: absolute;
+      left: -7px;
+      margin-top: 4px;
+    }
+
+    /* CONTACTO */
+    .contact-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 24px;
+      height: 100%;
+    }
+
+    /* BOTÓN IR ARRIBA */
+    #btnTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: none;
+      z-index: 999;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      background: #020617;
+      padding: 16px 0;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNavbar" data-bs-offset="80" tabindex="0">
+
+  <!-- NAVBAR -->
+  <nav id="mainNavbar" class="navbar navbar-expand-lg navbar-dark fixed-top border-bottom border-secondary">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
+        <i class="fa-solid fa-code"></i>
+        <span>Pianeta Dev</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav gap-lg-2">
+          <li class="nav-item">
+            <a class="nav-link active" href="#inicio">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#sobre-mi">Sobre mí</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#habilidades">Habilidades</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#proyectos">Proyectos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contacto">Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO / INICIO -->
+  <section id="inicio">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6">
+          <div class="hero-badge">
+            <i class="fa-solid fa-terminal"></i> Desarrollador en formación · Ingeniería de Sistemas
+          </div>
+          <h1 class="hero-title">
+            Hola, soy <span class="text-primary">Manuel Julián Pianeta</span>
+          </h1>
+          <p class="hero-subtitle mt-2 mb-3">
+            Estudiante de Ingeniería de Sistemas con enfoque en desarrollo web, apasionado por la
+            tecnología, la innovación y la solución de problemas reales.
+          </p>
+
+          <div class="d-flex flex-wrap hero-cta">
+            <a href="#proyectos" class="btn btn-primary d-inline-flex align-items-center gap-2">
+              Ver proyectos
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="#contacto" class="btn btn-outline-light d-inline-flex align-items-center gap-2">
+              Contáctame
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+
+          <div class="mt-4 d-flex flex-wrap gap-3">
+            <span class="skill-pill">
+              <i class="fa-brands fa-html5"></i> HTML5
+            </span>
+            <span class="skill-pill">
+              <i class="fa-brands fa-css3-alt"></i> CSS3
+            </span>
+            <span class="skill-pill">
+              <i class="fa-brands fa-bootstrap"></i> Bootstrap
+            </span>
+            <span class="skill-pill">
+              <i class="fa-brands fa-js"></i> JavaScript
+            </span>
+          </div>
+        </div>
+
+        <div class="col-lg-6 hero-img-wrapper">
+          <div class="hero-card p-3 mx-auto" style="max-width:380px;">
+            <img
+              src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg"
+              alt="Desarrollador trabajando"
+              class="img-fluid rounded-4"
+            />
+            <div class="p-3">
+              <h5 class="mb-1">Portafolio Web</h5>
+              <p class="mb-2 text-secondary">
+                Proyecto final · CSS · JavaScript · Bootstrap · Responsive
+              </p>
+              <div class="d-flex justify-content-between small text-secondary">
+                <span><i class="fa-regular fa-circle-check"></i> En desarrollo</span>
+                <span><i class="fa-regular fa-clock"></i> 2025</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-badge">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            <span>100% Responsive<br /><strong>Desktop · Tablet · Móvil</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section id="sobre-mi" class="bg-section">
+    <div class="container">
+      <div class="row g-4 align-items-start">
+        <div class="col-lg-6">
+          <h2 class="section-title">Sobre mí</h2>
+          <p class="section-subtitle">
+            Un breve resumen de quién soy, qué estudio y hacia dónde quiero dirigir mi carrera
+            profesional en el área de la ingeniería y el desarrollo de software.
+          </p>
+          <p>
+            Soy estudiante de <strong>Ingeniería de Sistemas</strong>, con gran interés en el
+            desarrollo web, la arquitectura de software y la tecnología aplicada a la solución de
+            problemas sociales y empresariales.
+          </p>
+          <p>
+            Me gusta aprender nuevas herramientas, trabajar en equipo y construir proyectos que
+            mezclen diseño, funcionalidad y buena experiencia de usuario.
+          </p>
+        </div>
+
+        <div class="col-lg-6">
+          <h5 class="mb-3">Formación & Experiencia</h5>
+          <div class="timeline">
+            <div class="timeline-item position-relative">
+              <div class="timeline-dot"></div>
+              <h6 class="mb-0">Ingeniería de Sistemas</h6>
+              <small class="text-secondary">Corporación Universitaria Americana · 2024 - Actualidad</small>
+              <p class="mt-2 text-secondary">
+                Enfoque en programación, bases de datos, redes y desarrollo de software.
+              </p>
+            </div>
+            <div class="timeline-item position-relative">
+              <div class="timeline-dot"></div>
+              <h6 class="mb-0">Proyectos personales</h6>
+              <small class="text-secondary">Freelance · 2023 - Actualidad</small>
+              <p class="mt-2 text-secondary">
+                Desarrollo de páginas web informativas, pequeños sistemas y prototipos académicos
+                usando HTML, CSS, JavaScript y Bootstrap.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-3">
+            <h6 class="mb-2">Intereses</h6>
+            <div>
+              <span class="skill-pill"><i class="fa-solid fa-shield-halved"></i> Ciberseguridad</span>
+              <span class="skill-pill"><i class="fa-solid fa-diagram-project"></i> Arquitectura de software</span>
+              <span class="skill-pill"><i class="fa-solid fa-robot"></i> Automatización</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HABILIDADES -->
+  <section id="habilidades">
+    <div class="container">
+      <h2 class="section-title text-center">Habilidades</h2>
+      <p class="section-subtitle text-center">
+        Tecnologías y herramientas que manejo en el desarrollo de mis proyectos.
+      </p>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="contact-card h-100">
+            <h5><i class="fa-solid fa-code me-2"></i>Frontend</h5>
+            <p class="text-secondary small">
+              Construcción de interfaces modernas, responsivas y usables.
+            </p>
+            <div>
+              <span class="skill-pill"><i class="fa-brands fa-html5"></i> HTML5</span>
+              <span class="skill-pill"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+              <span class="skill-pill"><i class="fa-brands fa-bootstrap"></i> Bootstrap</span>
+              <span class="skill-pill"><i class="fa-brands fa-js"></i> JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="contact-card h-100">
+            <h5><i class="fa-solid fa-database me-2"></i>Lógica & Backend</h5>
+            <p class="text-secondary small">
+              Base en algoritmos, estructuras de datos y lógica de programación.
+            </p>
+            <div>
+              <span class="skill-pill"><i class="fa-solid fa-terminal"></i> Java</span>
+              <span class="skill-pill"><i class="fa-solid fa-circle-nodes"></i> POO</span>
+              <span class="skill-pill"><i class="fa-solid fa-code-branch"></i> Git básico</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="contact-card h-100">
+            <h5><i class="fa-solid fa-users-gear me-2"></i>Soft skills</h5>
+            <p class="text-secondary small">
+              Habilidades personales para trabajar y liderar proyectos.
+            </p>
+            <div>
+              <span class="skill-pill"><i class="fa-solid fa-comments"></i> Comunicación</span>
+              <span class="skill-pill"><i class="fa-solid fa-people-group"></i> Trabajo en equipo</span>
+              <span class="skill-pill"><i class="fa-solid fa-lightbulb"></i> Creatividad</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos" class="bg-section">
+    <div class="container">
+      <h2 class="section-title text-center">Proyectos</h2>
+      <p class="section-subtitle text-center">
+        Algunos proyectos y prototipos en los que he trabajado durante mi formación.
+      </p>
+
+      <div class="row g-4">
+        <!-- PROYECTO 1 -->
+        <div class="col-md-4">
+          <div class="project-card">
+            <img
+              src="https://images.pexels.com/photos/2706379/pexels-photo-2706379.jpeg"
+              class="project-img"
+              alt="Sistema de portafolio web"
+            />
+            <div class="project-body">
+              <h5>Portafolio Web Personal</h5>
+              <p class="text-secondary small">
+                Sitio tipo landing page para mostrar proyectos, habilidades y datos de contacto.
+              </p>
+              <div class="project-tags mb-2">
+                <span>HTML</span><span>CSS</span><span>Bootstrap</span><span>JS</span>
+              </div>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <a href="#" class="text-primary small" target="_blank">
+                  Ver demo <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+                </a>
+                <a href="#" class="text-secondary small" target="_blank">
+                  Código <i class="fa-brands fa-github ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROYECTO 2 -->
+        <div class="col-md-4">
+          <div class="project-card">
+            <img
+              src="https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg"
+              class="project-img"
+              alt="Proyecto académico"
+            />
+            <div class="project-body">
+              <h5>Sitio informativo Soledad Atlántico</h5>
+              <p class="text-secondary small">
+                Página que describe la historia, símbolos e información general del municipio de
+                Soledad, Atlántico.
+              </p>
+              <div class="project-tags mb-2">
+                <span>HTML</span><span>CSS</span><span>Bootstrap</span>
+              </div>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <a href="#" class="text-primary small" target="_blank">
+                  Ver demo <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+                </a>
+                <a href="#" class="text-secondary small" target="_blank">
+                  Código <i class="fa-brands fa-github ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROYECTO 3 -->
+        <div class="col-md-4">
+          <div class="project-card">
+            <img
+              src="https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg"
+              class="project-img"
+              alt="Aplicación JS"
+            />
+            <div class="project-body">
+              <h5>Mini aplicación JS</h5>
+              <p class="text-secondary small">
+                Aplicación sencilla en JavaScript para practicar eventos, DOM e interacción con el
+                usuario.
+              </p>
+              <div class="project-tags mb-2">
+                <span>JavaScript</span><span>Eventos</span><span>DOM</span>
+              </div>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <button class="btn btn-sm btn-outline-light" id="btnDemoJS">
+                  Probar interacción
+                </button>
+                <span class="small text-success" id="demoJSState"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container">
+      <h2 class="section-title text-center">Contacto</h2>
+      <p class="section-subtitle text-center">
+        ¿Te interesa mi perfil o quieres conocer más sobre mis proyectos? Escríbeme.
+      </p>
+
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="contact-card">
+            <h5 class="mb-3"><i class="fa-solid fa-paper-plane me-2"></i>Envíame un mensaje</h5>
+            <form id="contactForm">
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombre"
+                  placeholder="Tu nombre"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="correo" class="form-label">Correo electrónico</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="correo"
+                  placeholder="tunombre@correo.com"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="mensaje" class="form-label">Mensaje</label>
+                <textarea
+                  class="form-control"
+                  id="mensaje"
+                  rows="4"
+                  placeholder="Cuéntame en qué puedo ayudarte"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Enviar mensaje
+              </button>
+              <small id="formMsg" class="d-block mt-2"></small>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="contact-card">
+            <h5 class="mb-3"><i class="fa-solid fa-id-badge me-2"></i>Información</h5>
+            <p class="text-secondary small">
+              Estoy disponible para proyectos académicos, colaboraciones y oportunidades de
+              aprendizaje relacionadas con el desarrollo de software y la ingeniería de sistemas.
+            </p>
+            <ul class="list-unstyled mb-3 small">
+              <li class="mb-2">
+                <i class="fa-solid fa-location-dot me-2"></i> Soledad, Atlántico · Colombia
+              </li>
+              <li class="mb-2">
+                <i class="fa-solid fa-envelope me-2"></i>
+                <a href="mailto:manueljulianpianetacalvo@gmail.com">manueljulianpianetacalvo@gmail.com</a>
+              </li>
+              <li class="mb-2">
+                <i class="fa-solid fa-phone me-2"></i> +57 · 304 336 5219
+              </li>
+            </ul>
+            <h6 class="mb-2">Redes</h6>
+            <div class="d-flex gap-3">
+              <a href="#" class="text-light">
+                <i class="fa-brands fa-github fa-lg"></i>
+              </a>
+              <a href="#" class="text-light">
+                <i class="fa-brands fa-linkedin fa-lg"></i>
+              </a>
+              <a href="#" class="text-light">
+                <i class="fa-brands fa-instagram fa-lg"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTÓN IR ARRIBA -->
+  <button id="btnTop" class="btn btn-primary rounded-circle">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container text-center">
+      <span>© 2025 · Portafolio desarrollado por Manuel Julián Pianeta · Ingeniería de Sistemas</span>
+    </div>
+  </footer>
+
+  <!-- JS Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS personalizado -->
+  <script>
+    // Botón ir arriba
+    const btnTop = document.getElementById("btnTop");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        btnTop.style.display = "block";
+      } else {
+        btnTop.style.display = "none";
+      }
+    });
+
+    btnTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Demo JS en tarjeta de proyecto
+    const btnDemoJS = document.getElementById("btnDemoJS");
+    const demoJSState = document.getElementById("demoJSState");
+
+    if (btnDemoJS) {
+      btnDemoJS.addEventListener("click", () => {
+        const now = new Date().toLocaleTimeString();
+        demoJSState.textContent = "Interacción ejecutada a las " + now;
+        setTimeout(() => {
+          demoJSState.textContent = "";
+        }, 4000);
+      });
+    }
+
+    // Manejo básico del formulario de contacto (solo front)
+    const contactForm = document.getElementById("contactForm");
+    const formMsg = document.getElementById("formMsg");
+
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      formMsg.textContent =
+        "Gracias por tu mensaje, pronto me pondré en contacto contigo.";
+      formMsg.classList.add("text-success");
+      contactForm.reset();
+    });
+  </script>
+</body>
+</html>
